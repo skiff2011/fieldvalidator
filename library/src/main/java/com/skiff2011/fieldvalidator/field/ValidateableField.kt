@@ -8,9 +8,8 @@ import kotlin.reflect.KProperty
 
 open class ValidateableField<T : Serializable>(
   initialValue: T,
+  val viewId: Int,
   private val condition: Condition<T>
-//  private val viewState: ValidationViewState<V>,
-//  private val viewClass: Class<V>
 ) : ReadWriteProperty<Any?, T>, Serializable {
 
   private var value: T = initialValue
@@ -23,19 +22,5 @@ open class ValidateableField<T : Serializable>(
     this.value = value
   }
 
-  fun validate(): String? = this.condition.validate(value)
-
-  /*fun generateViewStateEvent(error: String?): ValidationEvent = object : ValidationEvent {
-    override fun performAction(view: View) {
-      if (!viewClass.isInstance(view)) {
-        throw TypeCastException("ValidationViewState type differs from the type of view")
-      }
-      val validateableView = viewClass.cast(view)!!
-      if (error == null) {
-        viewState.hideError(validateableView)
-      } else {
-        viewState.showError(error, validateableView)
-      }
-    }
-  }*/
+  open fun validate(): String? = this.condition.validate(value)
 }

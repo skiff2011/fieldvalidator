@@ -1,10 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.skiff2011.fieldvalidator.sample.SampleActivity"
-    >
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+  <data>
+    <variable
+        name="activity"
+        type="com.skiff2011.fieldvalidator.sample.SampleActivity"
+        />
+  </data>
 
-</android.support.constraint.ConstraintLayout>
+  <LinearLayout
+      xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:gravity="center_vertical"
+      android:orientation="vertical"
+      tools:context="com.skiff2011.fieldvalidator.sample.SampleActivity"
+      >
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/til1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Test Hint 1"
+        app:errorEnabled="true"
+        validator="@{activity.validator}"
+        >
+
+      <android.support.design.widget.TextInputEditText
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@={activity.string1}"
+          />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/til2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Test Hint 2"
+        app:errorEnabled="true"
+        validator="@{activity.validator}"
+        >
+
+      <android.support.design.widget.TextInputEditText
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@={activity.string2}"
+          />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:enabled="@{activity.enabled}"
+        android:onClick="@{() -> activity.onClick()}"
+        android:text="validate"
+        />
+
+  </LinearLayout>
+
+</layout>
