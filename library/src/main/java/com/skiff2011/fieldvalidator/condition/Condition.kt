@@ -2,7 +2,7 @@ package com.skiff2011.fieldvalidator.condition
 
 import java.io.Serializable
 
-interface Condition<T : Serializable> : Serializable {
+interface Condition<T : Serializable?> : Serializable {
   //return null if valid
   fun validate(value: T): String?
 

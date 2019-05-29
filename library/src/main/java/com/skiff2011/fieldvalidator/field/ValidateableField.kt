@@ -6,20 +6,30 @@ import java.io.Serializable
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
-open class ValidateableField<T : Serializable>(
+open class ValidateableField<T : Serializable?>(
   initialValue: T,
   val viewId: Int,
-  private val condition: Condition<T>
+  private val condition: Condition<T>,
+  private val onValueChanged: ((T) -> Unit)? = null
 ) : ReadWriteProperty<Any?, T>, Serializable {
 
   private var value: T = initialValue
 
   @CallSuper
-  override fun getValue(thisRef: Any?, property: KProperty<*>): T = this.value
+  override fun getValue(
+    thisRef: Any?,
+    property: KProperty<*>
+  ): T = this.value
 
   @CallSuper
-  override fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
+  override fun setValue(
+    thisRef: Any?,
+    property: KProperty<*>,
+    value: T
+  ) {
+
     this.value = value
+    onValueChanged?.invoke(value)
   }
 
   open fun validate(): String? = this.condition.validate(value)

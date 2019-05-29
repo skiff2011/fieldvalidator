@@ -5,9 +5,11 @@ import java.io.Serializable
 
 class AutoValidateableFieldFactory : ValidateableFieldFactory<AutoValidateableField<*>> {
 
-  override fun <T : Serializable> createField(
+  override fun <T : Serializable?> createField(
     initialValue: T,
     condition: Condition<T>,
-    viewId: Int
-  ): AutoValidateableField<*> = AutoValidateableField(initialValue, viewId, condition)
+    viewId: Int,
+    onValueChanged: ((T) -> Unit)?
+  ): AutoValidateableField<*> =
+    AutoValidateableField(initialValue, viewId, condition, onValueChanged)
 }

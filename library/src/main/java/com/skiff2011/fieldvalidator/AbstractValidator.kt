@@ -25,13 +25,14 @@ abstract class AbstractValidator<F : ValidateableField<*>>(
 
   private val fields: HashMap<Int, F> = HashMap()
 
-  inline fun <T : Serializable, reified V : View> validateable(
+  inline fun <T : Serializable?, reified V : View> validateable(
     initialValue: T,
     viewId: Int,
     viewState: ValidationViewState<V>,
-    condition: Condition<T>
+    condition: Condition<T>,
+    noinline onValueChanged: ((T) -> Unit)? = null
   ): ReadWriteProperty<Any?, T> {
-    val property = createField(initialValue, condition, viewId)
+    val property = createField(initialValue, condition, viewId, onValueChanged)
     addField(viewId, property, ViewEventProvider(viewState, V::class.java))
     return property as ReadWriteProperty<Any?, T>
   }

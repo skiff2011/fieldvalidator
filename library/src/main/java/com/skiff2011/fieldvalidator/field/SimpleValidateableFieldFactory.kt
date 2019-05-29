@@ -5,9 +5,10 @@ import java.io.Serializable
 
 class SimpleValidateableFieldFactory : ValidateableFieldFactory<ValidateableField<*>> {
 
-  override fun <T : Serializable> createField(
+  override fun <T : Serializable?> createField(
     initialValue: T,
     condition: Condition<T>,
-    viewId: Int
-  ): ValidateableField<*> = ValidateableField(initialValue, viewId, condition)
+    viewId: Int,
+    onValueChanged: ((T) -> Unit)?
+  ): ValidateableField<*> = ValidateableField(initialValue, viewId, condition, onValueChanged)
 }

@@ -5,11 +5,12 @@ import com.skiff2011.fieldvalidator.condition.Condition
 import java.io.Serializable
 import kotlin.reflect.KProperty
 
-class AutoValidateableField<T : Serializable>(
+class AutoValidateableField<T : Serializable?>(
   initialValue: T,
   viewId: Int,
-  condition: Condition<T>
-) : ValidateableField<T>(initialValue, viewId, condition) {
+  condition: Condition<T>,
+  onValueChanged: ((T) -> Unit)? = null
+) : ValidateableField<T>(initialValue, viewId, condition, onValueChanged) {
 
   override fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
     super.setValue(thisRef, property, value)
