@@ -25,12 +25,14 @@ class OptionalAutoValidator(validationBusFactory: ValidationBusFactory = GreenRo
   fun enable(vararg ids: Int) {
     validateableFieldsIds.addAll(ids.toList())
     getValidateableFields().filter { field -> ids.contains(field.viewId) }
-      .forEach { field -> field.callback = this }
+        .forEach { field ->
+          field.callback = this
+        }
     invalidateValidatorState()
   }
 
   fun disable(vararg ids: Int) {
-    getValidateableFields().forEach { field -> field.callback = this }
+    getValidateableFields().forEach { field -> field.callback = null }
     validateableFieldsIds.removeAll(ids.toList())
     ids.forEach { id -> errors.remove(id) }
     invalidateValidatorState()
