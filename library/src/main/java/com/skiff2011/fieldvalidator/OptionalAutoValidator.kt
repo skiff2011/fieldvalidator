@@ -32,7 +32,8 @@ class OptionalAutoValidator(validationBusFactory: ValidationBusFactory = GreenRo
   }
 
   fun disable(vararg ids: Int) {
-    getValidateableFields().forEach { field -> field.callback = null }
+    getValidateableFields().filter { item -> ids.contains(item.viewId) }
+        .forEach { field -> field.callback = null }
     validateableFieldsIds.removeAll(ids.toList())
     ids.forEach { id -> errors.remove(id) }
     invalidateValidatorState()
