@@ -9,11 +9,19 @@ import kotlin.reflect.KProperty
 open class ValidateableField<T : Serializable?>(
   initialValue: T,
   val viewId: Int,
-  private val condition: Condition<T>,
+  condition: Condition<T>,
   private val onValueChanged: ((T) -> Unit)? = null
 ) : ReadWriteProperty<Any?, T>, Serializable {
 
   private var value: T = initialValue
+
+  var condition: Condition<T> = condition
+    set(value) {
+      if (field != value) {
+        field = value
+        validate()
+      }
+    }
 
   @CallSuper
   override fun getValue(
