@@ -1,21 +1,21 @@
 package com.skiff2011.fieldvalidator.bus
 
+import com.skiff2011.fieldvalidator.Subscribeable
 import com.skiff2011.fieldvalidator.view.ValidationViewSubscriber
-import java.io.Serializable
 
-abstract class ValidationBus : Serializable {
+abstract class ValidationBus : Subscribeable<ValidationViewSubscriber> {
 
   private var lastEvent: ValidationEvent? = null
 
-  fun subscribe(subscriber: ValidationViewSubscriber) {
-    subscribeSubscriber(subscriber)
+  override fun subscribe(subscriber: ValidationViewSubscriber) {
+    subscribeImpl(subscriber)
     lastEvent?.let { event ->
       post(event)
     }
   }
 
-  fun unsubscribe(subscriber: ValidationViewSubscriber) {
-    unsubscribeSubscriber(subscriber)
+  override fun unsubscribe(subscriber: ValidationViewSubscriber) {
+    unSubscribeImpl(subscriber)
   }
 
   fun post(event: ValidationEvent) {
@@ -25,8 +25,8 @@ abstract class ValidationBus : Serializable {
 
   protected abstract fun postBusEvent(event: ValidationEvent)
 
-  protected abstract fun subscribeSubscriber(subscriber: ValidationViewSubscriber)
+  protected abstract fun subscribeImpl(subscriber: ValidationViewSubscriber)
 
-  protected abstract fun unsubscribeSubscriber(subscriber: ValidationViewSubscriber)
+  protected abstract fun unSubscribeImpl(subscriber: ValidationViewSubscriber)
 
 }

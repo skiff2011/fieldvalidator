@@ -1,6 +1,6 @@
 package com.skiff2011.fieldvalidator.sample
 
-import android.support.design.widget.TextInputLayout
+import com.google.android.material.textfield.TextInputLayout
 import com.skiff2011.fieldvalidator.view.ValidationViewState
 
 class TextInputLayoutViewState : ValidationViewState<TextInputLayout> {

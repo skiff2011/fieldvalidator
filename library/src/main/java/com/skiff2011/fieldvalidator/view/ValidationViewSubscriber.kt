@@ -1,7 +1,7 @@
 package com.skiff2011.fieldvalidator.view
 
-import android.support.annotation.CallSuper
 import android.view.View
+import androidx.annotation.CallSuper
 import com.skiff2011.fieldvalidator.bus.ValidationEvent
 
 abstract class ValidationViewSubscriber(private val view: View) {

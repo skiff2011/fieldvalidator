@@ -1,9 +1,8 @@
 package com.skiff2011.fieldvalidator.view
 
 import android.view.View
-import java.io.Serializable
 
-interface ValidationViewState<T : View> : Serializable {
+interface ValidationViewState<T : View> {
 
   fun showError(error: String, view: T)
 

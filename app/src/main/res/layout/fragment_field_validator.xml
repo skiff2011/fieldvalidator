@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"  xmlns:android="http://schemas.android.com/apk/res/android">
+  <data>
+    <variable
+        name="viewModel"
+        type="com.skiff2011.fieldvalidator.sample.FieldValidatorViewModel"
+        />
+  </data>
+  <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:fillViewport="true"
+      >
+
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:gravity="center_vertical"
+      android:orientation="vertical"
+      android:padding="16dp"
+      >
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Some Hint"
+        app:errorEnabled="true"
+        validator="@{viewModel.validator}"
+        >
+
+      <com.google.android.material.textfield.TextInputEditText
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@={viewModel.string0}"
+          />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select"
+        android:checked="@={viewModel.checked0}"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Some Hint"
+        app:errorEnabled="true"
+        validator="@{viewModel.validator}"
+        >
+
+      <com.google.android.material.textfield.TextInputEditText
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@={viewModel.string1}"
+          />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select"
+        android:checked="@={viewModel.checked1}"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Validate All"
+        android:onClick="@{() -> viewModel.onValidateAllClicked()}"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Validate Selected"
+        android:onClick="@{() -> viewModel.onValidateSelectedClicked()}"
+        />
+
+  </LinearLayout>
+
+  </ScrollView>
+
+</layout>
