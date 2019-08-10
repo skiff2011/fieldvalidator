@@ -1,13 +1,13 @@
 package com.skiff2011.fieldvalidator.condition
 
-interface KCondition<T : Any?> {
+interface Condition<T : Any?> {
 
   fun validate(value: T): ValidationResult
 
-  fun thenValidate(nextCondition: KCondition<T>): KCondition<T> = object :
-    KCondition<T> {
+  fun thenValidate(nextCondition: Condition<T>): Condition<T> = object :
+    Condition<T> {
     override fun validate(value: T): ValidationResult {
-      return this@KCondition.validate(value).let { result ->
+      return this@Condition.validate(value).let { result ->
         if (result is Valid) {
           nextCondition.validate(value)
         } else {

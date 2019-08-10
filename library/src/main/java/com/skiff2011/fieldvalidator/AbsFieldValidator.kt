@@ -2,7 +2,7 @@ package com.skiff2011.fieldvalidator
 
 import android.view.View
 import com.skiff2011.fieldvalidator.bus.ValidationBusFactory
-import com.skiff2011.fieldvalidator.condition.KCondition
+import com.skiff2011.fieldvalidator.condition.Condition
 import com.skiff2011.fieldvalidator.condition.ValidationResult
 import com.skiff2011.fieldvalidator.field.FieldFactory
 import com.skiff2011.fieldvalidator.field.FieldValidationCallback
@@ -25,7 +25,7 @@ abstract class AbsFieldValidator(
   inline fun <T : Any?, reified V : View> validateable(
     initialValue: T,
     viewId: Int,
-    condition: KCondition<T>,
+    condition: Condition<T>,
     viewState: ValidationViewState<V> = EmptyViewState(),
     noinline onValueChanged: ((T) -> Unit)? = null
   ): ReadWriteProperty<Any?, T> {

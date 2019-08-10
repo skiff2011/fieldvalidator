@@ -2,7 +2,7 @@ package com.skiff2011.fieldvalidator.field
 
 import com.skiff2011.fieldvalidator.Subscribeable
 import com.skiff2011.fieldvalidator.bus.ValidationBus
-import com.skiff2011.fieldvalidator.condition.KCondition
+import com.skiff2011.fieldvalidator.condition.Condition
 import com.skiff2011.fieldvalidator.condition.Valid
 import com.skiff2011.fieldvalidator.condition.ValidationResult
 import com.skiff2011.fieldvalidator.view.ValidationViewSubscriber
@@ -13,7 +13,7 @@ import kotlin.reflect.KProperty
 class ValidateableField<T : Any?>(
   initialValue: T,
   val viewId: Int,
-  private val condition: KCondition<T>,
+  private val condition: Condition<T>,
   private val validationCallback: FieldValidationCallback?,
   private val bus: ValidationBus,
   private val eventProvider: ViewEventProvider<*>,
