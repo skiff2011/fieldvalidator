@@ -8,17 +8,19 @@
   </data>
 
   <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-      android:orientation="vertical" android:layout_width="match_parent"
-      android:padding="16dp"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
       android:gravity="center_vertical"
-      android:layout_height="match_parent">
+      android:orientation="vertical"
+      android:padding="16dp"
+      >
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:errorEnabled="true"
         android:hint="Some Hint"
+        app:errorEnabled="true"
         validator="@{viewModel.validator}"
         >
 
@@ -31,18 +33,18 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <CheckBox
-        android:text="Select"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:checked="@={viewModel.checked0}"
+        android:text="Select"
         />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:errorEnabled="true"
         android:hint="Some Hint"
+        app:errorEnabled="true"
         validator="@{viewModel.validator}"
         >
 
@@ -55,16 +57,17 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <CheckBox
-        android:text="Select"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:checked="@={viewModel.checked1}"
+        android:text="Select"
         />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text='@{"is validator valid = " + viewModel.valid}'/>
+        android:text='@{"is validator valid = " + viewModel.valid}'
+        />
 
   </LinearLayout>
 
