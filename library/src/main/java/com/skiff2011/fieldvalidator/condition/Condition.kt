@@ -1,16 +1,23 @@
 package com.skiff2011.fieldvalidator.condition
 
-import java.io.Serializable
+interface Condition<T : Any?> {
 
-interface Condition<T : Serializable?> : Serializable {
-  //return null if valid
-  fun validate(value: T): String?
+  fun validate(value: T): ValidationResult
 
   fun thenValidate(nextCondition: Condition<T>): Condition<T> = object :
     Condition<T> {
-    override fun validate(value: T): String? {
-      return this@Condition.validate(value) ?: nextCondition.validate(value)
+    override fun validate(value: T): ValidationResult {
+      return this@Condition.validate(value).let { result ->
+        if (result is Valid) {
+          nextCondition.validate(value)
+        } else {
+          result
+        }
+      }
     }
-
   }
 }
+
+sealed class ValidationResult
+object Valid : ValidationResult()
+data class Error(val error: String) : ValidationResult()
