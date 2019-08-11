@@ -1,3 +1,4 @@
+[![](https://jitpack.io/v/skiff2011/fieldvalidator.svg)](https://jitpack.io/#skiff2011/fieldvalidator)
 # FieldValidator
 **_Validate fields, not views_**
 
@@ -31,7 +32,7 @@ Step 2: Add the dependency to your app gradle file
 ```Groovy
 dependencies {
   //...
-  implementation 'com.github.auxility:baseadapter:$latestVersion'
+  implementation 'com.github.skiff2011:fieldvalidator:$latestVersion'
   //...
 }
 ```
