@@ -154,7 +154,7 @@ class YourViewModel() {
 
 You can also use ```FieldAutoValidator``` to perform field validation as its value changes.
 You have to create ```FieldAutoValidator``` instance instead of ```FieldValidator``` 
-as desriben above and pass ```ValidationCallback``` instance, which will be called when validator changes its state.
+as describen above and pass ```ValidationCallback``` instance, which will be called when validator changes its state.
 ```Kotlin
 class YourViewModel() {
   // ...
