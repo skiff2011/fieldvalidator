@@ -5,7 +5,7 @@
 Every Android developer faces with validating user input (email, phone, license agreement etc.). 
 Validating user input means getting this input from View, validating it and then displaying the validation result.
 Screen validation with more than several Edittexts could be a bit challenging, 
-combining everything listed above for every single view, could be a bit challenging and brings a lot of boilerplate code.
+combining everything listed above for every single view, is not that simple and brings a lot of boilerplate code.
 FieldValidator is attempt to get rid of coupling user input validation with view and focus mainly on data validation 
 without boilerplate. 
 Although such approach could be useful for MVVM like architecture with Android Databinding usage, 
